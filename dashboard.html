@@ -171,6 +171,8 @@
             document.getElementById('totalSubmissions').innerText = data.length;
             if (data.length > 0 && data[0].submittedAt) {
                 document.getElementById('lastSubmission').innerText = data[0].submittedAt.toDate().toLocaleString();
+            } else {
+                document.getElementById('lastSubmission').innerText = "None found";
             }
         }
 
@@ -389,12 +391,12 @@
 
         document.getElementById('sectionFilter').addEventListener('change', (e) => {
             const section = e.target.value;
-            if (section === 'all') {
-                renderTable(allResponses);
-            } else {
-                const filtered = allResponses.filter(r => r.student.section === section);
-                renderTable(filtered);
-            }
+            const filtered = section === 'all'
+                ? allResponses
+                : allResponses.filter(r => r.student.section === section);
+
+            renderTable(filtered);
+            updateStats(filtered);
         });
 
         // Initial Load
