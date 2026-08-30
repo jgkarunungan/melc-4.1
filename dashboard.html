@@ -148,7 +148,7 @@
                 const row = document.createElement('tr');
                 row.className = 'hover:bg-gray-50';
 
-                const studentName = `${res.student.surname}, ${res.student.firstName} ${res.student.middleName || ''}`;
+                const studentName = `${res.student.surname}, ${res.student.firstName} ${res.student.middleName || ''}`.toUpperCase();
                 const date = res.submittedAt ? res.submittedAt.toDate().toLocaleString() : 'N/A';
                 const quizScore = calculateScore(res.quiz);
                 const activityTotal = res.activityScore ? (res.activityScore.c1 + res.activityScore.c2 + res.activityScore.c3) : 0;
@@ -182,7 +182,8 @@
             const quizScore = calculateScore(res.quiz);
             const savedScore = res.activityScore || { c1: 0, c2: 0, c3: 0 };
             
-            document.getElementById('modalTitle').innerText = `${res.student.surname}, ${res.student.firstName}`;
+            const fullName = `${res.student.surname}, ${res.student.firstName} ${res.student.middleName || ''}`.toUpperCase();
+            document.getElementById('modalTitle').innerText = fullName;
             const content = document.getElementById('modalContent');
 
             let quizHtml = '<div class="grid grid-cols-2 md:grid-cols-5 gap-2">';

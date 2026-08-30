@@ -12,6 +12,7 @@
         .prose p { margin-bottom: 1.25rem; line-height: 1.75; color: #374151; }
         .assessment-card { border-left: 4px solid #3b82f6; background-color: #eff6ff; }
         .quiz-option:hover { background-color: #f3f4f6; }
+        #studentSurname, #studentFirstName, #studentMiddleName { text-transform: uppercase; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -354,9 +355,9 @@
         const db = getFirestore(app);
 
         document.getElementById('submitBtn').addEventListener('click', async () => {
-            const surname = document.getElementById('studentSurname').value;
-            const firstName = document.getElementById('studentFirstName').value;
-            const middleName = document.getElementById('studentMiddleName').value;
+            const surname = document.getElementById('studentSurname').value.trim().toUpperCase();
+            const firstName = document.getElementById('studentFirstName').value.trim().toUpperCase();
+            const middleName = document.getElementById('studentMiddleName').value.trim().toUpperCase();
             const section = document.getElementById('studentSection').value;
 
             if (!surname || !firstName || !section) {
